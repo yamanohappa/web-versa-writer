@@ -182,11 +182,11 @@ main {
   animation: RtoLAnimeR;
 }
 @keyframes LtoRAnime {
-  0% {
+  100% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 24));
   }
 
-  100% {
+  0% {
     transform: translateX(
       calc(50vw - calc(90vh - 150px) / 24 - calc(90vh - 150px) / 12 * 60)
     );
@@ -194,12 +194,12 @@ main {
 }
 
 @keyframes RtoLAnimeR {
-  0% {
+  100% {
     transform: translateX(
       calc(50vw - calc(90vh - 150px) / 24 - calc(90vh - 150px) / 12 * 60)
     );
   }
-  100% {
+  0% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 24));
   }
 }
