@@ -61,7 +61,7 @@
     <script language="javascript" type="text/javascript">
         ////////////////////////////////////////////////////////////
         // バーサライタのコード
-
+        var lastLPF = 0;
         function setText() {
             var input_message = document.getElementById("text_strings").value;
             document.getElementById("test_view").innerHTML = input_message;
@@ -83,8 +83,20 @@
             if (2 < vec3d.x) {
                 element_x.style.color = '#0f0';
             }
-            element_x.textContent = String(vec3d.x);
+            LPF(vec3d.x)
+            element_x.textContent = String(lastLPF);
         });
+        ///////
+        // LPF
+        function LPF(raw) {
+            var LPF = 0, k = 0.1;
+            LPF = (1 - k) * lastLPF + k * raw;
+            lastLPF = LPF;
+        }
+
+
+        //lastLPF：前回のLPF値
+        //raw ：今回の計測値
         ////////////////////////////////////////////////////////////
         // フルスクリーンのコード
         window.addEventListener('load', function () {
