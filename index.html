@@ -97,76 +97,122 @@
             });
 
             //加速度 ios 版
-            var element_x = document.getElementById("x");
-            window.addEventListener("devicemotion", function (e) {
-                var vec3d = e.acceleration;
-                if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
-                    element_x.style.color = '#f00';
-                    const element = document.getElementById('display');
-                    element.classList.add("RtoL");
-                    element.classList.remove("LtoR");
-                }
-                if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
-                    element_x.style.color = '#0f0';
-                    const element = document.getElementById('display');
-                    element.classList.add("LtoR");
-                    element.classList.remove("RtoL");
-                }
+            //画面の向きを 0,90,180,-90 のいずれかで取得
 
-                nowLPF = LPF(vec3d.x);
-                lastJ = dx(nowLPF, lastLPF);
-                lastLPF = nowLPF;
-                //element_x.textContent = String(lastJ);
-            });
-            ///////
-            // LPF
-            function LPF(raw) {
-                var LPF = 0, k = 0.1;
-                LPF = (1 - k) * lastLPF + k * raw;
-                return LPF;
+            if (window.orientation === 0) {
+                var element_x = document.getElementById("x");
+                window.addEventListener("devicemotion", function (e) {
+                    var vec3d = e.acceleration;
+                    if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#f00';
+                        const element = document.getElementById('display');
+                        element.classList.add("RtoL");
+                        element.classList.remove("LtoR");
+                    }
+                    if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#0f0';
+                        const element = document.getElementById('display');
+                        element.classList.add("LtoR");
+                        element.classList.remove("RtoL");
+                    }
+
+                    nowLPF = LPF(vec3d.x);
+                    lastJ = dx(nowLPF, lastLPF);
+                    lastLPF = nowLPF;
+                    //element_x.textContent = String(lastJ);
+                });
+            } else {
+                var element_x = document.getElementById("x");
+                window.addEventListener("devicemotion", function (e) {
+                    var vec3d = e.acceleration;
+                    if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#f00';
+                        const element = document.getElementById('display');
+                        element.classList.add("RtoL");
+                        element.classList.remove("LtoR");
+                    }
+                    if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#0f0';
+                        const element = document.getElementById('display');
+                        element.classList.add("LtoR");
+                        element.classList.remove("RtoL");
+                    }
+
+                    nowLPF = LPF(vec3d.y);
+                    lastJ = dx(nowLPF, lastLPF);
+                    lastLPF = nowLPF;
+                    //element_x.textContent = String(lastJ);
+                });
             }
-            //微分
-            function dx(x1, x2) {
-                return (x1 - x2);
-            }
+
+
 
         } else {
             //加速度 android 版
-            var element_x = document.getElementById("x");
-            window.addEventListener("devicemotion", function (e) {
-                var vec3d = e.acceleration;
-                if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
-                    element_x.style.color = '#f00';
-                    const element = document.getElementById('display');
-                    element.classList.add("RtoL");
-                    element.classList.remove("LtoR");
-                }
-                if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
-                    element_x.style.color = '#0f0';
-                    const element = document.getElementById('display');
-                    element.classList.add("LtoR");
-                    element.classList.remove("RtoL");
-                }
+            //画面の向きを 0,90,180,-90 のいずれかで取得
+            var orientation = window.orientation;
 
-                nowLPF = LPF(vec3d.x);
-                lastJ = dx(nowLPF, lastLPF);
-                lastLPF = nowLPF;
-                //element_x.textContent = String(lastJ);
-            });
-            ///////
-            // LPF
-            function LPF(raw) {
-                var LPF = 0, k = 0.1;
-                LPF = (1 - k) * lastLPF + k * raw;
-                return LPF;
+            if (orientation === 0) {
+                var element_x = document.getElementById("x");
+                window.addEventListener("devicemotion", function (e) {
+                    var vec3d = e.acceleration;
+                    if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#f00';
+                        const element = document.getElementById('display');
+                        element.classList.add("RtoL");
+                        element.classList.remove("LtoR");
+                    }
+                    if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#0f0';
+                        const element = document.getElementById('display');
+                        element.classList.add("LtoR");
+                        element.classList.remove("RtoL");
+                    }
+
+                    nowLPF = LPF(vec3d.x);
+                    lastJ = dx(nowLPF, lastLPF);
+                    lastLPF = nowLPF;
+                    //element_x.textContent = String(lastJ);
+                });
+            } else {
+                var element_x = document.getElementById("x");
+                window.addEventListener("devicemotion", function (e) {
+                    var vec3d = e.acceleration;
+                    if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#f00';
+                        const element = document.getElementById('display');
+                        element.classList.add("RtoL");
+                        element.classList.remove("LtoR");
+                    }
+                    if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
+                        element_x.style.color = '#0f0';
+                        const element = document.getElementById('display');
+                        element.classList.add("LtoR");
+                        element.classList.remove("RtoL");
+                    }
+
+                    nowLPF = LPF(vec3d.y);
+                    lastJ = dx(nowLPF, lastLPF);
+                    lastLPF = nowLPF;
+                    //element_x.textContent = String(lastJ);
+                });
             }
-            //微分
-            function dx(x1, x2) {
-                return (x1 - x2);
-            }
+
+
+
 
         }
-
+        ///////
+        // LPF
+        function LPF(raw) {
+            var LPF = 0, k = 0.1;
+            LPF = (1 - k) * lastLPF + k * raw;
+            return LPF;
+        }
+        //微分
+        function dx(x1, x2) {
+            return (x1 - x2);
+        }
 
         //lastLPF：前回のLPF値
         //raw ：今回の計測値
