@@ -59,9 +59,11 @@
     </footer>
     <!---->
     <script language="javascript" type="text/javascript">
+        //変数
+        var lastLPF = 0, lastA = 0;
+
         ////////////////////////////////////////////////////////////
         // バーサライタのコード
-        var lastLPF = 0;
         function setText() {
             var input_message = document.getElementById("text_strings").value;
             document.getElementById("test_view").innerHTML = input_message;
@@ -77,21 +79,25 @@
         var element_x = document.getElementById("x");
         window.addEventListener("devicemotion", function (e) {
             var vec3d = e.acceleration;
-            if (vec3d.x < -2) {
+            if (lastA < 0) {
                 element_x.style.color = '#f00';
             }
-            if (2 < vec3d.x) {
+            if (0 < lastA) {
                 element_x.style.color = '#0f0';
             }
-            LPF(vec3d.x)
-            element_x.textContent = String(lastLPF);
+            lastLPF = LPF(vec3d.x);
+            lastA = dx(lastA, lastLPF);
+            element_x.textContent = String(lastA);
         });
         ///////
         // LPF
         function LPF(raw) {
             var LPF = 0, k = 0.1;
             LPF = (1 - k) * lastLPF + k * raw;
-            lastLPF = LPF;
+            return LPF;
+        }
+        function dx(x1, x2) {
+            return (x1 - x2);
         }
 
 
