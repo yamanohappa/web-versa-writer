@@ -175,7 +175,8 @@
         window.addEventListener('load', function () {
             // フルスクリーン表示
             document.getElementById('setFullScreenButton').addEventListener('click', function () {
-                document.body.requestFullscreen();
+                let requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+                requestFullScreen.call(docEl);
                 document.getElementById("global_header").style.display = "none";
                 document.getElementById("footer").style.display = "none";
                 document.getElementById("setFullScreenButton").style.display = "none";
@@ -183,7 +184,8 @@
             });
             // フルスクリーン解除
             document.getElementById('setUnFullScreenButton').addEventListener('click', function () {
-                document.exitFullscreen();
+                const cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+                cancelFullScreen.call(doc);
                 document.getElementById("global_header").style.display = "flex";
                 document.getElementById("footer").style.display = "inline-block";
                 document.getElementById("setFullScreenButton").style.display = "inline";
