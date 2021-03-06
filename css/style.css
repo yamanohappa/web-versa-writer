@@ -36,17 +36,19 @@ body {
 }
 #global_navigation_bar {
   display: block;
+  margin-left: 30px;
+
   margin-right: 30px;
 }
 
 #main_title {
   display: inline;
-  margin-left: 30px;
+  margin-right: 30px;
   font-size: 24px;
   line-height: 28px;
 }
 #string_menu {
-  margin-left: 30px;
+  margin-right: 30px;
 
   display: inline;
 }
@@ -58,25 +60,23 @@ body {
 }
 #text_strings {
   display: inline;
-
-  margin-left: 30px;
   width: 100px;
 }
 #text_color {
   display: inline;
-  margin-left: 30px;
+  margin-right: 30px;
 }
 #view_pattern {
-  margin-left: 30px;
+  margin-right: 30px;
 
   display: inline;
 }
 #x {
-  margin-left: 30px;
-
   display: inline;
 }
 #sensor_enable {
+  margin-right: 30px;
+
   display: inline;
 }
 #setFullScreenButton,
@@ -136,6 +136,8 @@ main {
   animation-iteration-count: infinite;
   animation-duration: 1s;
 }
+/*表示部*/
+
 #display {
   user-select: none;
   position: absolute;
@@ -182,11 +184,11 @@ main {
   animation: RtoLAnimeR;
 }
 @keyframes LtoRAnime {
-  100% {
+  0% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 24));
   }
 
-  0% {
+  100% {
     transform: translateX(
       calc(50vw - calc(90vh - 150px) / 24 - calc(90vh - 150px) / 12 * 60)
     );
@@ -194,12 +196,12 @@ main {
 }
 
 @keyframes RtoLAnimeR {
-  100% {
+  0% {
     transform: translateX(
       calc(50vw - calc(90vh - 150px) / 24 - calc(90vh - 150px) / 12 * 60)
     );
   }
-  0% {
+  1000% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 24));
   }
 }
