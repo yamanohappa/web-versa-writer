@@ -13,6 +13,8 @@
     <meta charset="utf-8">
     <!--タブに表示するタイトル-->
     <title>web-versa-writer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
     <!--cssファイル読み込み-->
     <link href="css/normalize.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
@@ -26,19 +28,21 @@
 <body>
     <header id="global_header">
         <nav id="global_navigation_bar">
-            <div id="main_title">Web バーサライタ (web-versa-writer)</div>
+            <div id="main_title">web-versa-writer</div>
             <div id="string_menu">
-                <div id="now_text">view text:</div>
+                <div id="now_text">text:</div>
                 <div id="test_view">／＼／＼／＼</div>
                 <input type="text" id="text_strings" onchange="setText()" maxlength=6 value="text input">
             </div>
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
-            x: <span id="x"></span> <br>
 
 
         </nav>
     </header>
+    <div id="x_view"> x: <span id="x"></span>
+    </div>
+
     <!--フルスクリーンボタン-->
     <button id="setFullScreenButton">Full screen</button>
     <button id="setUnFullScreenButton" style="display: none;">Exit full screen</button>

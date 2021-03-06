@@ -5,8 +5,24 @@ html {
   background-color: #000;
   color: #eee;
   overflow: hidden;
+  height: 100%;
 }
-
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: #eee;
+}
+body {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+#x_view {
+  top: 0;
+  position: absolute;
+  z-index: 10000;
+}
 /***********************************************************************/
 /*ヘッダー*/
 /***********************************************************************/
