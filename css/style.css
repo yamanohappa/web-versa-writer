@@ -96,7 +96,6 @@ body {
   font-family: "PixelMplus10";
   src: url(../font/PixelMplus10-Regular.ttf);
 }
-
 #display {
   user-select: none;
   position: absolute;
@@ -106,23 +105,12 @@ body {
   font-size: calc(90vh - 150px);
   /*折り返し無し*/
   white-space: nowrap;
-  animation: scrollAnime 1s linear;
+}
+.LtoR {
+  animation: LtoRAnime 1s linear infinite;
   animation-timing-function: steps(60, end);
 }
-
-#notAdisplay {
-  user-select: none;
-  position: absolute;
-  top: calc(100px);
-  z-index: -1;
-  font-family: PixelMplus10;
-  font-size: calc(90vh - 150px);
-  /*折り返し無し*/
-  white-space: nowrap;
-  animation: scrollAnime 1s linear infinite;
-  animation-timing-function: steps(60, end);
-}
-@keyframes scrollAnime {
+@keyframes LtoRAnime {
   0% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 20));
   }
@@ -131,6 +119,20 @@ body {
     transform: translateX(
       calc(50vw - calc(90vh - 150px) / 20 - calc(90vh - 150px) / 10 * 60)
     );
+  }
+}
+.RtoL {
+  animation: RtoLAnimeR 1s linear infinite;
+  animation-timing-function: steps(60, end);
+}
+@keyframes RtoLAnimeR {
+  0% {
+    transform: translateX(
+      calc(50vw - calc(90vh - 150px) / 20 - calc(90vh - 150px) / 10 * 60)
+    );
+  }
+  100% {
+    transform: translateX(calc(50vw - calc(90vh - 150px) / 20));
   }
 }
 
