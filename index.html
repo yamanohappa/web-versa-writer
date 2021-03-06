@@ -31,7 +31,7 @@
             <div id="main_title">web-versa-writer</div>
             <div id="string_menu">
                 <div id="now_text">text:</div>
-                <div id="test_view">／＼／＼／＼</div>
+                <div id="test_view">Hello</div>
                 <input type="text" id="text_strings" onchange="setText()" maxlength=6 value="text input">
             </div>
             <!--カラービッカー-->
@@ -48,7 +48,7 @@
     <button id="setUnFullScreenButton" style="display: none;">Exit full screen</button>
 
     <!--表示部-->
-    <div id="display">／＼／＼／＼</div>
+    <div id="display">Hello</div>
 
     <!--消し幕-->
     <div id="left_blackout"></div>
@@ -77,6 +77,12 @@
         var element_x = document.getElementById("x");
         window.addEventListener("devicemotion", function (e) {
             var vec3d = e.acceleration;
+            if (vec3d.x < -2) {
+                element_x.style.color = '#f00';
+            }
+            if (2 < vec3d.x) {
+                element_x.style.color = '#0f0';
+            }
             element_x.textContent = String(vec3d.x);
         });
         ////////////////////////////////////////////////////////////
