@@ -55,7 +55,7 @@
     <div id="right_blackout"></div>
 
     <footer id="footer">
-        <a href="about" id="footer_text">このサイトについて -about-</div>
+        <a href="about" id="footer_text">このサイトについて -about- </div>
     </footer>
     <!---->
     <script language="javascript" type="text/javascript">
@@ -84,6 +84,13 @@
             }
             if (0 < lastA) {
                 element_x.style.color = '#0f0';
+                const element = document.getElementById('display');
+                element.className = "";
+                window.requestAnimationFrame(function (time) {
+                    window.requestAnimationFrame(function (time) {
+                        element.className = "play_animation";
+                    });
+                });
             }
             nowLPF = LPF(vec3d.x);
             lastA = dx(nowLPF, lastLPF);
