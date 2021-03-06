@@ -106,10 +106,22 @@ body {
   font-size: calc(90vh - 150px);
   /*折り返し無し*/
   white-space: nowrap;
-  animation: scrollAnime 1s linear infinite;
+  animation: scrollAnime 1s linear;
   animation-timing-function: steps(60, end);
 }
 
+#notAdisplay {
+  user-select: none;
+  position: absolute;
+  top: calc(100px);
+  z-index: -1;
+  font-family: PixelMplus10;
+  font-size: calc(90vh - 150px);
+  /*折り返し無し*/
+  white-space: nowrap;
+  animation: scrollAnime 1s linear infinite;
+  animation-timing-function: steps(60, end);
+}
 @keyframes scrollAnime {
   0% {
     transform: translateX(calc(50vw - calc(90vh - 150px) / 20));
