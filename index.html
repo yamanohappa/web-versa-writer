@@ -37,6 +37,7 @@
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
             <div id="x">■</div>
+            <button id="sensor_enable">Sensor Enable</button>
 
 
         </nav>
@@ -79,6 +80,24 @@
         }
         ////////////////////////////////////////////////////////////
         // 加速度センサ
+        // IOS　センサ　許可待ち
+        if (DeviceOrientationEvent.requestPermission) {
+            var sensor_contents = document.getElementById("sensor_enable");
+            sensor_contents.addEventListener("click", function () {
+                // ★ジャイロセンサーのアクセス許可をリクエストする
+                DeviceOrientationEvent.requestPermission().then(function (response) {
+                    // リクエストが許可されたら
+                    if (response === "granted") {
+                        // deviceorientationが有効化される
+                    }
+                }).catch(function (e) {
+                    console.log(e);
+                });
+            });
+        } else {
+
+        }
+        //加速度
         var element_x = document.getElementById("x");
         window.addEventListener("devicemotion", function (e) {
             var vec3d = e.acceleration;
@@ -94,6 +113,7 @@
                 element.classList.add("LtoR");
                 element.classList.remove("RtoL");
             }
+
             nowLPF = LPF(vec3d.x);
             lastJ = dx(nowLPF, lastLPF);
             lastLPF = nowLPF;
