@@ -36,9 +36,12 @@
             </div>
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
+            <select id="view_pattern" onchange="setViewPatternValue()">
+                <option value="Flashing" autofocus>Flashing Text</option>
+                <option value="Crawling">Crawling Text </option>
+            </select>
             <div id="x">■</div>
             <button id="sensor_enable">Sensor Enable</button>
-
 
         </nav>
     </header>
@@ -51,7 +54,7 @@
     <button id="setUnFullScreenButton" style="display: none;">Exit full screen</button>
 
     <!--表示部-->
-    <div id="display" class="LtoR">Hello</div>
+    <div id="display" class="LtoRtextFlashing">Hello</div>
 
     <!--消し幕-->
     <div id="left_blackout"></div>
@@ -65,20 +68,60 @@
     <!---->
     <script language="javascript" type="text/javascript">
         //変数
-        var lastLPF = 0, nowLPF = 0, lastJ = 0;
+        var lastLPF = 0, nowLPF = 0, lastJ = 0, viewPattern = "Flashing", way = "LtoR";
 
         ////////////////////////////////////////////////////////////
         // バーサライタのコード
+        //テキスト内容の編集
         function setText() {
             var input_message = document.getElementById("text_strings").value;
             document.getElementById("test_view").innerHTML = input_message;
             document.getElementById("display").innerHTML = input_message;
         }
-
+        //テキストの色
         function setColor() {
             var input_message = document.getElementById("text_color").value;
             document.getElementById("display").style.color = input_message;
         }
+        //流れる文字の設定　点滅か、流れるか
+        function setViewPatternValue() {
+            var input_message = document.getElementById("view_pattern").value;
+            viewPattern = input_message;
+            setViewPattern();
+        }
+        function setViewPattern() {
+            const element = document.getElementById('display');
+            if (viewPattern === "Flashing") {
+                if (way === "LtoR") {
+                    element.classList.add("LtoRtextFlashing");
+                    element.classList.remove("RtoLtextFlashing");
+                    element.classList.remove("LtoRCrawling");
+                    element.classList.remove("RtoLCrawling");
+                }
+                if (way === "RtoL") {
+                    element.classList.remove("LtoRtextFlashing");
+                    element.classList.add("RtoLtextFlashing");
+                    element.classList.remove("LtoRCrawling");
+                    element.classList.remove("RtoLCrawling");
+                }
+            }
+            if (viewPattern === "Crawling") {
+                if (way === "LtoR") {
+                    element.classList.remove("LtoRtextFlashing");
+                    element.classList.remove("RtoLtextFlashing");
+                    element.classList.add("LtoRCrawling");
+                    element.classList.remove("RtoLCrawling");
+                }
+                if (way === "RtoL") {
+                    element.classList.remove("LtoRtextFlashing");
+                    element.classList.remove("RtoLtextFlashing");
+                    element.classList.remove("LtoRCrawling");
+                    element.classList.add("RtoLCrawling");
+                }
+            }
+
+        }
+
         ////////////////////////////////////////////////////////////
         // 加速度センサ
         // IOS　センサ　許可待ち
@@ -100,20 +143,21 @@
             //画面の向きを 0,90,180,-90 のいずれかで取得
 
             if (window.orientation === 0) {
+                //縦画面時
                 var element_x = document.getElementById("x");
                 window.addEventListener("devicemotion", function (e) {
                     var vec3d = e.acceleration;
                     if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#f00';
                         const element = document.getElementById('display');
-                        element.classList.add("RtoL");
-                        element.classList.remove("LtoR");
+                        way = "LtoR";
+                        setViewPattern();
                     }
                     if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#0f0';
                         const element = document.getElementById('display');
-                        element.classList.add("LtoR");
-                        element.classList.remove("RtoL");
+                        way = "RtoL";
+                        setViewPattern();
                     }
 
                     nowLPF = LPF(vec3d.x);
@@ -122,20 +166,21 @@
                     //element_x.textContent = String(lastJ);
                 });
             } else {
+                //横画面時
                 var element_x = document.getElementById("x");
                 window.addEventListener("devicemotion", function (e) {
                     var vec3d = e.acceleration;
                     if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#f00';
                         const element = document.getElementById('display');
-                        element.classList.add("RtoL");
-                        element.classList.remove("LtoR");
+                        way = "LtoR";
+                        setViewPattern();
                     }
                     if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#0f0';
                         const element = document.getElementById('display');
-                        element.classList.add("LtoR");
-                        element.classList.remove("RtoL");
+                        way = "RtoL";
+                        setViewPattern();
                     }
 
                     nowLPF = LPF(-vec3d.y);
@@ -159,14 +204,14 @@
                     if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#f00';
                         const element = document.getElementById('display');
-                        element.classList.add("RtoL");
-                        element.classList.remove("LtoR");
+                        way = "LtoR";
+                        setViewPattern();
                     }
                     if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#0f0';
                         const element = document.getElementById('display');
-                        element.classList.add("LtoR");
-                        element.classList.remove("RtoL");
+                        way = "RtoL";
+                        setViewPattern();
                     }
 
                     nowLPF = LPF(vec3d.x);
