@@ -158,19 +158,17 @@ main {
   animation: RtoLAnimeR;
   animation-timing-function: steps(60, end);
   animation-iteration-count: infinite;
-  animation-duration: 1.5s;
+  animation-duration: 1s;
 }
 .LtoRCrawling {
   animation: LtoRAnime;
-
-  animation-timing-function: steps(60, end);
+  animation-timing-function: steps(90, end);
   animation-iteration-count: infinite;
-  animation-duration: 1s;
+  animation-duration: 1.5s;
 }
 .RtoLCrawling {
   animation: RtoLAnimeR;
-
-  animation-timing-function: steps(60, end);
+  animation-timing-function: steps(90, end);
   animation-iteration-count: infinite;
   animation-duration: 1.5s;
 }

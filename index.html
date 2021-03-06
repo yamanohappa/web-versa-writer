@@ -37,8 +37,9 @@
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
             <select id="view_pattern" onchange="setViewPatternValue()">
-                <option value="Flashing8" autofocus>Flashing Text 8px</option>
-                <option value="Flashing12">Flashing Text 12px</option>
+                <option value="Flashing12" autofocus>Flashing Text 12px</option>
+
+                <option value="Flashing8">Flashing Text 8px</option>
                 <option value="Crawling">Crawling Text </option>
             </select>
             <div id="x">■</div>
@@ -69,7 +70,7 @@
     <!---->
     <script language="javascript" type="text/javascript">
         //変数
-        var lastLPF = 0, nowLPF = 0, lastJ = 0, viewPattern = "Flashing8", way = "LtoR";
+        var lastLPF = 0, nowLPF = 0, lastJ = 0, viewPattern = "Flashing12", way = "LtoR";
 
         ////////////////////////////////////////////////////////////
         // バーサライタのコード
