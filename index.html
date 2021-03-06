@@ -48,7 +48,7 @@
     <button id="setUnFullScreenButton" style="display: none;">Exit full screen</button>
 
     <!--表示部-->
-    <div id="display">Hello</div>
+    <div id="display" class="run-animation">Hello</div>
 
     <!--消し幕-->
     <div id="left_blackout"></div>
@@ -85,12 +85,11 @@
             if (0 < lastA) {
                 element_x.style.color = '#0f0';
                 const element = document.getElementById('display');
-                element.className = "";
-                window.requestAnimationFrame(function (time) {
-                    window.requestAnimationFrame(function (time) {
-                        element.className = "play_animation";
-                    });
-                });
+                element.classList.remove("run-animation");
+                void element.offsetWidth;
+                element.classList.add("run-animation");
+
+
             }
             nowLPF = LPF(vec3d.x);
             lastA = dx(nowLPF, lastLPF);
