@@ -36,6 +36,7 @@
             </div>
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
+            <div id="x">■</div>
 
 
         </nav>
@@ -96,7 +97,7 @@
             nowLPF = LPF(vec3d.x);
             lastJ = dx(nowLPF, lastLPF);
             lastLPF = nowLPF;
-            element_x.textContent = String(lastJ);
+            //element_x.textContent = String(lastJ);
         });
         ///////
         // LPF
