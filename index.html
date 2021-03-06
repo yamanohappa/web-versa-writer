@@ -226,14 +226,14 @@
                     if (0 < lastJ && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#f00';
                         const element = document.getElementById('display');
-                        element.classList.add("RtoL");
-                        element.classList.remove("LtoR");
+                        way = "LtoR";
+                        setViewPattern();
                     }
                     if (lastJ < 0 && (lastLPF < -2 || 2 < lastLPF)) {
                         element_x.style.color = '#0f0';
                         const element = document.getElementById('display');
-                        element.classList.add("LtoR");
-                        element.classList.remove("RtoL");
+                        way = "RtoL";
+                        setViewPattern();
                     }
 
                     nowLPF = LPF(-vec3d.y);
