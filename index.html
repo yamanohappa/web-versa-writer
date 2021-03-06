@@ -138,7 +138,7 @@
                         element.classList.remove("RtoL");
                     }
 
-                    nowLPF = LPF(vec3d.y);
+                    nowLPF = LPF(-vec3d.y);
                     lastJ = dx(nowLPF, lastLPF);
                     lastLPF = nowLPF;
                     //element_x.textContent = String(lastJ);
@@ -191,7 +191,7 @@
                         element.classList.remove("RtoL");
                     }
 
-                    nowLPF = LPF(vec3d.y);
+                    nowLPF = LPF(-vec3d.y);
                     lastJ = dx(nowLPF, lastLPF);
                     lastLPF = nowLPF;
                     //element_x.textContent = String(lastJ);
