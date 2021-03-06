@@ -37,7 +37,8 @@
             <!--カラービッカー-->
             <input type="color" id="text_color" onchange="setColor()" value="#FFFFFF">
             <select id="view_pattern" onchange="setViewPatternValue()">
-                <option value="Flashing" autofocus>Flashing Text</option>
+                <option value="Flashing8" autofocus>Flashing Text 8px</option>
+                <option value="Flashing12">Flashing Text 12px</option>
                 <option value="Crawling">Crawling Text </option>
             </select>
             <div id="x">■</div>
@@ -54,7 +55,7 @@
     <button id="setUnFullScreenButton" style="display: none;">Exit full screen</button>
 
     <!--表示部-->
-    <div id="display" class="LtoRtextFlashing">Hello</div>
+    <div id="display" class="LtoRtextFlashing textFlashing8">Hello</div>
 
     <!--消し幕-->
     <div id="left_blackout"></div>
@@ -91,7 +92,27 @@
         }
         function setViewPattern() {
             const element = document.getElementById('display');
-            if (viewPattern === "Flashing") {
+            if (viewPattern === "Flashing12") {
+                element.classList.add("textFlashing12");
+                element.classList.remove("textFlashing8");
+                element.classList.remove("Crawling");
+                if (way === "LtoR") {
+                    element.classList.add("LtoRtextFlashing");
+                    element.classList.remove("RtoLtextFlashing");
+                    element.classList.remove("LtoRCrawling");
+                    element.classList.remove("RtoLCrawling");
+                }
+                if (way === "RtoL") {
+                    element.classList.remove("LtoRtextFlashing");
+                    element.classList.add("RtoLtextFlashing");
+                    element.classList.remove("LtoRCrawling");
+                    element.classList.remove("RtoLCrawling");
+                }
+            }
+            if (viewPattern === "Flashing8") {
+                element.classList.remove("textFlashing12");
+                element.classList.add("textFlashing8");
+                element.classList.remove("Crawling");
                 if (way === "LtoR") {
                     element.classList.add("LtoRtextFlashing");
                     element.classList.remove("RtoLtextFlashing");
@@ -106,6 +127,9 @@
                 }
             }
             if (viewPattern === "Crawling") {
+                element.classList.remove("textFlashing12");
+                element.classList.remove("textFlashing8");
+                element.classList.add("Crawling");
                 if (way === "LtoR") {
                     element.classList.remove("LtoRtextFlashing");
                     element.classList.remove("RtoLtextFlashing");

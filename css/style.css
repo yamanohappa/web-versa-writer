@@ -123,18 +123,19 @@ main {
   font-family: "PixelMplus10";
   src: url(../font/PixelMplus12-Regular.ttf);
 }
-.textFlashing {
+@font-face {
+  font-family: "k8x12";
+  src: url(../font/k8x12.ttf);
+}
+.textFlashing12 {
   font-family: PixelMplus10;
-  animation-timing-function: steps(60, end);
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
+}
+.textFlashing8 {
+  font-family: k8x12;
 }
 .Crawling {
   font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
     "Hiragino Sans", Meiryo, sans-serif;
-  animation-timing-function: steps(60, end);
-  animation-iteration-count: infinite;
-  animation-duration: 1s;
 }
 /*表示部*/
 
@@ -149,30 +150,26 @@ main {
 }
 .LtoRtextFlashing {
   animation: LtoRAnime;
-  font-family: PixelMplus10;
   animation-timing-function: steps(60, end);
   animation-iteration-count: infinite;
   animation-duration: 1s;
 }
 .RtoLtextFlashing {
   animation: RtoLAnimeR;
-  font-family: PixelMplus10;
   animation-timing-function: steps(60, end);
   animation-iteration-count: infinite;
   animation-duration: 1.5s;
 }
 .LtoRCrawling {
   animation: LtoRAnime;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", Meiryo, sans-serif;
+
   animation-timing-function: steps(60, end);
   animation-iteration-count: infinite;
   animation-duration: 1s;
 }
 .RtoLCrawling {
   animation: RtoLAnimeR;
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
-    "Hiragino Sans", Meiryo, sans-serif;
+
   animation-timing-function: steps(60, end);
   animation-iteration-count: infinite;
   animation-duration: 1.5s;
