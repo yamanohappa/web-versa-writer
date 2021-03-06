@@ -79,13 +79,13 @@
         var element_x = document.getElementById("x");
         window.addEventListener("devicemotion", function (e) {
             var vec3d = e.acceleration;
-            if (lastA < 0) {
+            if (lastA < 0 && (lastLPF < -2 || 2 < lastLPF)) {
                 element_x.style.color = '#f00';
                 const element = document.getElementById('display');
                 element.classList.add("RtoL");
                 element.classList.remove("LtoR");
             }
-            if (0 < lastA) {
+            if (0 < lastA && (lastLPF < -2 || 2 < lastLPF)) {
                 element_x.style.color = '#0f0';
                 const element = document.getElementById('display');
                 element.classList.add("LtoR");
