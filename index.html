@@ -86,6 +86,8 @@
                 element_x.style.color = '#0f0';
                 const element = document.getElementById('display');
                 element.classList.remove("run-animation");
+                element.offsetWidth = element.offsetWidth;
+
                 void element.offsetWidth;
                 element.classList.add("run-animation");
 
